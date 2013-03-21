@@ -1,0 +1,11 @@
+this
+is
+a
+file
+with pretty boring
+text scattered on many lines
+the key
+is that if 
+I search for
+the word ten,
+it's on that line.
