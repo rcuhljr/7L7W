@@ -12,8 +12,8 @@ day2 fibloop(4) println
 day2 fibloop(10) println
 
 day2 fibrec := method(n,
-    if(n == 1, return(1));
-    return(fibrec(n - 1) + n))
+    if(n <= 2, return(1));
+    return(fibrec(n - 2) + fibrec(n-1)))
     
 day2 fibrec(1) println
 day2 fibrec(10) println
