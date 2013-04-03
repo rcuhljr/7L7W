@@ -1,5 +1,5 @@
 List2 clone do(
-	theData := list(list(nil, nil);, list(nil, nil);, list(nil, "ted");, list(nil, nil););
-	dimy := 4
 	dimx := 2
+	dimy := 4
+	theData := list(list(nil, nil);, list(nil, nil);, list(nil, "ted");, list(nil, nil););
 )

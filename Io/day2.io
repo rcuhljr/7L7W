@@ -11,9 +11,13 @@ day2 fibloop(1) println
 day2 fibloop(4) println
 day2 fibloop(10) println
 
+memo := list(0, 1, 1, 2)
+
+
 day2 fibrec := method(n,
-    if(n <= 2, return(1));
-    return(fibrec(n - 2) + fibrec(n-1)))
+    if(memo at(n), return(memo at(n)));
+    memo atInsert(n, fibrec(n - 2) + fibrec(n-1));
+    return(memo at(n)))
     
 day2 fibrec(1) println
 day2 fibrec(10) println
@@ -68,13 +72,15 @@ myList get(1,2) println
 myTList := myList transpose
 myTList get(2,1) println
 
+myList println
 file := File clone openForUpdating("outMatrix.txt")
 file write(myList serialized)
 file close
 
 file openForReading("outMatrix.txt")
-stillMyList := doString(file readLines join)
+stillMyList := doString(file readLines join("\n"))
 file close
+stillMyList println
 stillMyList get(1,2) println
 
 Game := Object clone
