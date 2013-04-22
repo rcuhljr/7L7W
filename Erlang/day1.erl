@@ -33,12 +33,13 @@ words([N]) ->
 
 words([Head, N | Tail]) ->   
   if
-    Head /= 32; N /= 32 -> count_words(Head, lists:append([N],Tail), 1);
-    true -> count_words(Head, lists:append([N],Tail), 0)
+    Head /= 32, N /= 32 -> count_words(Head, [N | Tail], 0);
+    Head /= 32, N == 32 -> count_words(Head, [N | Tail], 1);
+    true -> count_words(Head, [N | Tail], 0)
   end.
 
 
-count_words(Char, [_] , Count) -> Count;
+count_words(Char, [] , Count) -> Count;
 count_words(Char, [Head | Tail], Count) ->   
   if       
     32 == Char, 32 /= Head -> count_words(Head, Tail, Count + 1);
