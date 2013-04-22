@@ -25,12 +25,6 @@ my_fib(N) -> my_fib(1,1,N-1).
 my_fib(N, PREV, 1) -> N+PREV;
 my_fib(N, PREV, X) -> my_fib(N+PREV, N, X-1).
 
-words(N) when length(N) == 2 ->   
-  if
-    N == [32,32] -> 0;
-    true -> 1
-  end;
-
 words(N) when length(N) == 1 -> 
   if
     N == [32] -> 0;
@@ -46,12 +40,12 @@ words(N) ->
   end  
 end.
 
-count_words(Char, Seq, Count) when length(Seq) < 2 -> Count;
+count_words(Char, Seq, Count) when length(Seq) < 1 -> Count;
 count_words(Char, Seq, Count) -> 
   begin
     [Head | Tail] = Seq,
-    if 
-      32 /= Char, 32 == Head -> count_words(Head, Tail, Count + 1);
+    if       
+      32 == Char, 32 /= Head -> count_words(Head, Tail, Count + 1);
       true -> count_words(Head, Tail, Count)
     end
   end.
