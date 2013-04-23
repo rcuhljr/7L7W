@@ -6,6 +6,7 @@
 -export([words/1]).
 -export([count_to/1]).
 -export([match_test/1]).
+-include_lib("eunit/include/eunit.hrl").
 
 
 mirror(Anything) -> Anything.
@@ -16,7 +17,6 @@ number(thre) -> 3.
 
 my_fact(0) -> 1;
 my_fact(N) -> N * my_fact(N-1).
-
 
 my_fib(0) -> 1;
 my_fib(1) -> 1;
@@ -42,3 +42,12 @@ count_to(N, T) -> erlang:display(N), count_to(N+1, T-1).
 
 match_test(success) -> "Success";
 match_test({error, Message}) -> "error: " ++ Message.
+
+words_one_blank_test() -> 0 = words(" ").
+words_one_letter_test() -> 1 = words("A").
+words_two_blank_test() -> 0 = words("  ").
+words_one_letter_one_blank_test() -> 1 = words("A ").
+words_one_blank_one_letter_test() -> 1 = words(" A").
+leading_space_test() -> 4 = words(" A big word here").
+ending_space_test() -> 4 = words("A big word here ").
+ending_letter_test() -> 5 = words("A big word here I").
