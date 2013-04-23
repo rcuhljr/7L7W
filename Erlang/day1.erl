@@ -25,27 +25,16 @@ my_fib(N) -> my_fib(1,1,N-1).
 my_fib(N, PREV, 1) -> N+PREV;
 my_fib(N, PREV, X) -> my_fib(N+PREV, N, X-1).
 
-words([N]) -> 
-  if
-    N == 32 -> 0;
-    true -> 1
-  end;
+words([N]) when N == 32 -> 0;
+words([N]) when N /= 32 -> 1;  
 
-words([Head, N | Tail]) ->   
-  if
-    Head /= 32, N /= 32 -> count_words(Head, [N | Tail], 0);
-    Head /= 32, N == 32 -> count_words(Head, [N | Tail], 1);
-    true -> count_words(Head, [N | Tail], 0)
-  end.
+words([Head, N | Tail]) when Head /= 32, N == 32 -> count_words(Head, [N | Tail], 1);  
+words([Head, N | Tail]) -> count_words(Head, [N | Tail], 0).
 
-
-count_words(Char, [] , Count) -> Count;
-count_words(Char, [Head | Tail], Count) ->   
-  if       
-    32 == Char, 32 /= Head -> count_words(Head, Tail, Count + 1);
-    true -> count_words(Head, Tail, Count)
-  end.  
-
+count_words(_, [] , Count) -> Count;
+count_words(Char, [Head | Tail], Count) when 32 == Char, 32 /= Head -> count_words(Head, Tail, Count + 1);
+count_words(_, [Head | Tail], Count) -> count_words(Head, Tail, Count).
+  
 count_to(N) -> count_to(1, N-1).
 
 count_to(N, 0) -> erlang:display(N), ok;
