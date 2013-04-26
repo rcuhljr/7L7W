@@ -1,19 +1,10 @@
 -module(day1).
--export([mirror/1]).
--export([number/1]).
 -export([my_fact/1]).
 -export([my_fib/1]).
 -export([words/1]).
 -export([count_to/1]).
 -export([match_test/1]).
 -include_lib("eunit/include/eunit.hrl").
-
-
-mirror(Anything) -> Anything.
-
-number(one) -> 1;
-number(two) -> 2;
-number(thre) -> 3.
 
 my_fact(0) -> 1;
 my_fact(N) -> N * my_fact(N-1).
